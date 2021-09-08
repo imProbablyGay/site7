@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- css -->
+    <link rel="stylesheet" href="scss/style.css">
+    <!-- bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;700;900&display=swap" rel="stylesheet">
+    <!-- js -->
+    <script src="js/tabs.js" defer></script>
+    <script src="js/scrollSpy.js" defer></script>
+</head>
+<body>
+    
+    <header class="header">
+        <nav class="navbar fixed-top navbar-expand-md">
+            <div class="container navbar__content">
+              <a class="navbar-brand" href="#">AX<span>IT</span></a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="bar bar-1"></div>
+                <div class="bar bar-2"></div>
+                <div class="bar bar-3"></div>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav scrollspy-items">
+                  <li class="nav-item">
+                    <a class="nav-link scrollspy-item" href="#Features">Features</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link scrollspy-item" href="#About">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link scrollspy-item" href="#Pricing">Pricing</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link scrollspy-item" href="#Reviews">Reviews</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link scrollspy-item last-scrollspy-item" href="#Contact">Contact</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+        <!-- burger -->
+        <script>
+            if (window.innerWidth < 768) {
+            let menu = document.querySelector('.navbar-toggler');
+            let menuBox = document.querySelector('.navbar-collapse');
+            let menuBoxItems = document.querySelectorAll('.nav-item');
+    
+            menuBoxItems.forEach(current => {
+                current.onclick = () => {
+                    menuBox.classList.remove('show');
+                    document.body.classList.remove('overflow-hidden');
+                    menu.classList.toggle('_active');
+                }
+            });
+    
+            menu.onclick = menuOpen;
+    
+            function menuOpen(e) {
+                menu.disabled = true;
+                setTimeout(() => {
+                menu.disabled = false;
+                }, 300);
+    
+                e.preventDefault();
+                document.body.classList.toggle('overflow-hidden');
+                menu.classList.toggle('_active');
+            }
+            }
+        </script>
+
+        <!-- header content -->
+        <div class="header__content container">
+            <div class="row header__container">
+                <div class="col-md-6 col-sm-12">
+                    <h1 class="header__title">AX<span>IT</span></h1>
+                    <h3 class="header__desc">MODERN AXURE TEMPLATE FOR BEAUTIFUL PROTOTYPES</h3>
+                    <p class="header__text">Lorem ipsum dolor sit amet, conm perspiciatis placeat assumenda quas vel eos quibusdam inventore commodi nihil velit est voluptatem, aperiam nemo nesciunt?</p>
+                    <div class="header__download-btn"><a href="img/header-bg.png" download="img/header-bg.png">Download</a></div>
+                </div>
+
+                <div class="col-md-6 col-sm-12 header__right">
+                    <form class="header__form header-form">
+                        <div class="header-form__title">Try Your <span>FREE</span> Trial Today</div>
+
+                        <div action="" class="header-form__form">
+                          <div class="header-form__input">
+                              <input type="text" placeholder="Name">
+                          </div>
+                          <div class="header-form__input">
+                              <input type="email" placeholder="Email">
+                          </div>
+                          <div class="header-form__input">
+                              <input type="password" placeholder="Password">
+                          </div>
+                          <button class="header-form__submit btnAnim" type="submit">
+                              Get Started
+                          </button>
+                      </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="headerForm" tabindex="-1" aria-labelledby="headerFormLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <h3>Thank you for activating your account!</h3>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn modal-close__footer" data-bs-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- header form check -->
+            <script>
+              let currentForm = document.querySelector('.header__form');
+              
+            
+              currentForm.onsubmit = (e) => {
+                e.preventDefault();
+            
+                // check inputs
+                let formElems = document.querySelectorAll('.header-form__input input');
+                let result = [];
+                let errors = 0;
+            
+                for (let item of formElems) {
+                  if (item.type == 'email' && !item.value.includes('@')) {
+                    item.style.borderColor = 'rgba(255,57,70,.4)';
+                    errors++;
+                  } else if (item.value == '') {
+                    item.style.borderColor = 'rgba(255,57,70,.4)';
+                    errors++;
+                  }
+                }
+            
+                if (errors != 0) return false;
+            
+                // add answers to array
+                for (let item of formElems) {
+                  result.push(item.value)
+                }
+            
+                 // reset values
+                 currentForm.querySelectorAll('input').forEach(el => {
+                    el.value = '';
+                    el.style.background = '';
+                  })
+            
+                console.log(result);
+            
+                // show modal
+                var myModal = new bootstrap.Modal(document.getElementById('headerForm'), {
+                  keyboard: false
+                })
+            
+                myModal.show();
+              }
+            </script>
+        </div>
+
+        <div class="header__links">
+          <div class="header__links-container">
+            <div class="left">
+              <h4>Social Media</h4>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit at, veniam tenetur aut unde earum.</p>
+            </div>
+  
+            <div class="right">
+              <a href="#"><img src="img/header-links.png" alt=""></a>
+            </div>
+          </div>
+        </div>
+    </header>
+
+    <main>
+      <!-- tabs  -->
+      <section class="tabs anchors-section" id="Features">
+        <div class="container">
+          <div class="row tabs__container">
+            <div class="col-lg-2 col-md-3 col-sm-12">
+              <div class="tabs__controls">
+                <div class="tabs__control active" data-tab-control='0'>TAB 1</div>
+                <div class="tabs__control" data-tab-control='1'>TAB 2</div>
+                <div class="tabs__control" data-tab-control='2'>TAB 3</div>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-md-9 col-sm-12">
+              <div class="tabs__tabs">
+                <div class="tabs__tab active" data-tab-index='0'>
+                  <div class="tabs__title section-subtitle">Tabs with soft transitioning effect</div>
+                  <div class="tabs__text">
+                    <p>Lorem ipsum dolor sit amet consectetur Autem sed dolores ea veritatis? adipisicing elit. Labore corrupti a reiciendis maxime sed vero illum nesciunt aut assumenda. Esse, soluta. Aut dolorum tempora optio porro culpa cum cumque eius? Autem sed dolores ea veritatis?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, aliquid!</p>
+                  </div>
+                  <div class="tabs__download"><a href="#" class="btnAnim" download="img/header-bg.png">Download</a></div>
+                </div>
+
+                <div class="tabs__tab" data-tab-index='1'>
+                  <div class="tabs__title section-subtitle">Tabs with soft transitioning effect</div>
+                  <div class="tabs__text">
+                    <p>Lorem ipsum dolor sit amet consectetur bore corrupti a reiciendis maxime sed vero illum nesciunt aut assumenda. Esse, soluta. Aut dolorum tempora optio porro culpa cum cumque eius? Autem sed dolores ea veritatis?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, aliquid!</p>
+                  </div>
+                  <div class="tabs__download"><a href="#" class="btnAnim" download="img/header-bg.png">Download</a></div>
+                </div>
+
+                <div class="tabs__tab" data-tab-index='2'>
+                  <div class="tabs__title section-subtitle">Tabs with soft transitioning effect</div>
+                  <div class="tabs__text">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, aliquid!</p>
+                  </div>
+                  <div class="tabs__download"><a href="#" class="btnAnim" download="img/header-bg.png">Download</a></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-12">
+              <div class="tabs__img">
+                <img src="img/tabs-img.png" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- sublist -->
+      <section class="sublist">
+        <div class="container">
+          <div class="row sublist__container">
+            <div class="sublist__left col-lg-6 col-sm-12">
+              <img src="img/sublist-img.png" alt="">
+            </div>
+
+            <div class="sublist__right col-lg-6 col-sm-12">
+              <div class="section-subtitle sublist__title section-subtitle-line">Sub list section</div>
+              <div class="sublist__text">
+                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. repellat neque! Impedit quo minus debitis aut? Deserunt, quas minima mollitia modi eveniet perferendis ratione dicta.</p>
+              </div>
+
+              <div class="sublist__items">
+                <div class="sublist__item">
+                  <div class="img"><img src="img/sublist-item1.png" alt=""></div>
+                  <div class="text">
+                    <h4>Title</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo dicta molestias et eaque, itaque veniam.</p>
+                  </div>
+                </div>
+
+                <div class="sublist__item">
+                  <div class="img"><img src="img/sublist-item1.png" alt=""></div>
+                  <div class="text">
+                    <h4>Title</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Explicabo dicta molestias et eaque, itaque veniam. Lorem ipsum dolor sit amet consectetur, adipisicing eli</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- picture section -->
+      <section class="pic-section">
+        <div class="container">
+          <div class="row pic-section__container">
+            <div class="col-lg-6 col-sm-12 left">
+              <div class="section-subtitle section-subtitle-line pic-section__title">Standart Picture Section</div>
+              <div class="text">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Id quae animi quod, ea explicabo nihil ipsam cupiditate velit iusto sed perferendis nam excepturi commodi, eligendi veniam vel, labore sequi numquam saepe? Itaque illo architecto non!</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, omnis. Lorem, ipsum dolor.</p>
+              </div>
+            </div>
+
+            <div class="col-lg-6 col-sm-12 right">
+              <img src="img/pic-section-img.png" alt="">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- awesome -->
+      <section class="awesome anchors-section" id="About">
+        <div class="container">
+          <div class="row section-title section-title-line awesome__title">
+            <h2>why this is awesome</h2>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing.</p>
+          </div>
+
+          <div class="row awesome__cards">
+            <div class="awesome__card col-md-4 col-sm-12">
+              <img src="img/awesom-card1.png" alt="">
+              <h3>Thoughtful Design</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisi expedita amet ipsum cum aut, culpa sint quidem autem vel reiciendis deleniti molestiae.</p>
+            </div>
+            <div class="awesome__card col-md-4 col-sm-12">
+              <img src="img/awesom-card2.png" alt="">
+              <h3>Well Crafted</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel iste facilis nemo. Ma autem vel reiciendis deleniti molestiae.</p>
+            </div>
+            <div class="awesome__card col-md-4 col-sm-12">
+              <img src="img/awesom-card3.png" alt="">
+              <h3>Easy to Customise</h3>
+              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Vel iste adip, culpa natus sint vel reiciendis deleniti molestiae.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- pricing -->
+      <section class="pricing anchors-section" id="Pricing">
+        <div class="container">
+          <div class="row section-title section-title-line pricing__title">
+            <h2>pricing options</h2>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
+          </div>
+
+          <div class="row pricing__items">
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="pricing__item pricing-item">
+                <div class="pricing-item__header">
+                  <div class="name">Basic</div>
+                  <div class="price">
+                    $<span>0</span>
+                  </div>
+                  <div class="description">Free for Life</div>
+                  <div class="popular"></div>
+                </div>
+
+                <div class="pricing-item__body">
+                  <span>1 gb of space</span>
+                  <span>10 gb of bandwidth</span>
+                  <span>3 websites</span>
+                  <span>basic customization</span>
+                  <span>wordpress integration</span>
+                  <span>email suport</span>
+                </div>
+
+                <div class="pricing-item__hover">
+                  <span data-bs-toggle="modal" data-bs-target="#buy-now__modal">Buy</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="pricing__item pricing-item">
+                <div class="pricing-item__header">
+                  <div class="name">Professional</div>
+                  <div class="price">
+                    $<span>19</span>
+                  </div>
+                  <div class="description">Monthly Payment</div>
+                  <div class="popular"><div class="text">our most popular</div></div>
+                </div>
+
+                <div class="pricing-item__body">
+                  <span>5 gb of space</span>
+                  <span>50 gb of bandwidth</span>
+                  <span>12 websites</span>
+                  <span>advanced customization</span>
+                  <span>wordpress integration</span>
+                  <span>email suport</span>
+                </div>
+
+                <div class="pricing-item__hover">
+                  <span data-bs-toggle="modal" data-bs-target="#buy-now__modal">Buy</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
+              <div class="pricing__item pricing-item">
+                <div class="pricing-item__header">
+                  <div class="name">Enterprise</div>
+                  <div class="price">
+                    $<span>70</span>
+                  </div>
+                  <div class="description">Monthly Payment</div>
+                  <div class="popular"></div>
+                </div>
+
+                <div class="pricing-item__body">
+                  <span>unlimited space</span>
+                  <span>unlimited bandwidth</span>
+                  <span>100 websites</span>
+                  <span>advanced customization</span>
+                  <span>wordpress integration</span>
+                  <span>24/7 customer support</span>
+                </div>
+
+                <div class="pricing-item__hover">
+                  <span data-bs-toggle="modal" data-bs-target="#buy-now__modal">Buy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- buy modal -->
+      <div class="modal fade" id="buy-now__modal" tabindex="-1" aria-labelledby="buy-now__modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-body">
+              <h3>Choose option you want to buy</h3>
+              <form>
+                <div class="modal-buy__option">
+                  <input id="option1" type="radio" name='buy-product' value="0" checked>
+                  <label for='option1'> Option 1(0$)</label>
+                </div>
+                <div class="modal-buy__option">
+                  <input id="option2" type="radio" name='buy-product' value="1" >
+                  <label for='option2'> Option 2(19$)</label>
+                </div>
+                <div class="modal-buy__option">
+                  <input id="option3" type="radio" name='buy-product' value="2" >
+                  <label for='option3'> Option 3(70$)</label>
+                </div>
+
+                <div class="modal-email modal-buy__email">
+                  <input type="email" name="" id="" placeholder="Enter Your Email">
+                  <span class="error">E-mail must be correct.</span>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn modal-close__footer" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn modal-buy__footer modal-footer-close">Buy</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- all modal logic -->
+    <script>
+      
+      let buyBtn = document.querySelector('.modal-buy__footer');
+      let buyModalEmail = document.querySelector('.modal-buy__email input');
+      let optionCheckedInput = document.querySelectorAll('.modal-buy__option input');
+      let modalAll = document.querySelectorAll('.modal');
+      let buyModalBootstrap = document.getElementById('buy-now__modal');
+
+      modalAll.forEach(el => {
+        el.addEventListener('click' , function(e) {
+          // create instanse
+          let newModal = document.querySelector(`#${el.id}`)
+          let modalInstance = bootstrap.Modal.getInstance(newModal);
+
+          // buy btn click
+          if (e.target.classList.contains('modal-buy__footer') && buyModalEmail.value.includes('@')) {
+            let output = [];
+
+            optionCheckedInput.forEach(el => {
+              if (el.checked) output.push(el);
+            })
+            output.push(buyModalEmail.value);
+
+            buyModalEmail.value = '';
+            optionCheckedInput.forEach(el => {
+              el.checked = false;
+            })
+            optionCheckedInput[0].checked = true;
+
+            modalInstance.hide();
+
+            // hide error span
+            el.querySelector('.modal-body .error').style.opacity = 0;
+
+          } else if (e.target.classList.contains('modal-footer-close')) {
+            // if email is empty
+            el.querySelector('.modal-body .error').style.opacity = 1;
+          }
+
+          // add close event
+          buyModalBootstrap.addEventListener('hide.bs.modal' , () => {
+            buyModalEmail.value = '';
+            optionCheckedInput.forEach(el => {
+              el.checked = false;
+            })
+            optionCheckedInput[0].checked = true;
+            el.querySelector('.modal-body .error').style.opacity = 0;
+          });
+        });
+      })
+
+    </script>
+
+    <!-- testimonials -->
+    <section class="testimonials anchors-section" id="Reviews">
+      <div class="container">
+        <div class="row section-title section-title-line testimonials__title">
+          <h2>what our customers are saying</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+        </div>
+
+        <div class="row testimonials__content">
+          <div class="col-md-4 col-sm-12">
+            <div class="testimonials__item">
+              <div class="text">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam fuga consectetur minima iusto excepturi accusamus est ad repudiandae harum sunt.</p>
+              </div>
+              <div class="author">
+                <div class="img">
+                  <img src="img/testimonials-author.png" alt="">
+                </div>
+                <div class="author__text">
+                  <h4>Jeremy H.</h4>
+                  <p>Manager</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="testimonials__item">
+              <div class="text">
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam, unde molestias! Autem, unde esse laudantium eum expedita quia molestiae amet laborum, sequi cum distinctio suscipit!</p>
+              </div>
+              <div class="author">
+                <div class="img">
+                  <img src="img/testimonials-author.png" alt="">
+                </div>
+                <div class="author__text">
+                  <h4>John S.</h4>
+                  <p>Freelancer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4 col-sm-12">
+            <div class="testimonials__item">
+              <div class="text">
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam fuga consectetur minima iusto excepturi accusamus est ad repudiandae harum sunt.</p>
+              </div>
+              <div class="author">
+                <div class="img">
+                  <img src="img/testimonials-author.png" alt="">
+                </div>
+                <div class="author__text">
+                  <h4>Susan W.</h4>
+                  <p>Photographer</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- design -->
+    <section class="design">
+      <div class="container">
+        <div class="row section-title section-title-line design__title">
+          <h2>stylish axure desing</h2>
+          <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Incidunt aliquid vitae qui soluta veniam non.</p>
+          <div class="download"><a href="#" class="btnAnim" download="img/header-bg.png">Download</a></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact anchors-section" id="Contact">
+      <div class="container">
+        <div class="row section-title section-title-line contact__title">
+          <h2>contact us</h2>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
+        </div>
+
+        <form class="contact__form row">
+          <div class="content">
+            <div class="col-md-6 col-sm-12 left">
+              <input type="text" placeholder="Name" class="iterable-field" required>
+              <input type="email" placeholder="Email" class="iterable-field" required>
+              <input type="text" placeholder="Subject" class="iterable-field" required>
+            </div>
+  
+            <div class="col-md-6 col-sm-12 right">
+              <textarea placeholder="Message" class="iterable-field"></textarea>
+            </div>
+          </div>
+
+          <div class="col-12 contact__send"><button type="submit" class="btnAnim">Send Message</button></div>
+        </form>
+      </div>
+    </section>
+
+    <!-- contact modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <h3>Message has been sent!</h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn modal-close__footer" data-bs-dismiss="modal">ok</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- contact script -->
+    <script>
+      let contactForm = document.querySelector('.contact__form');
+      let contactFormInputs = document.querySelectorAll('.contact .iterable-field');
+      let contactModal = new bootstrap.Modal(document.getElementById('contactModal'), {
+        keyboard: false
+      });
+      let answers = [];
+
+      contactForm.onsubmit = (e) => {
+        e.preventDefault();
+
+        contactModal.show();
+        contactFormInputs.forEach(el => {
+          answers.push(el.value)
+          el.value = ''
+        });
+
+        console.log(answers);
+        answers = [];
+      }
+    </script>
+    </main>
+
+    <!-- footer -->
+    <footer class="footer">
+      <div class="img">
+        <a href="#">
+          <img src="img/footer-links.png" alt="">
+        </a>
+      </div>
+      <div class="text">&copy; 2015 Axure Themes</div>
+    </footer>
+
+</body>
+</html>
